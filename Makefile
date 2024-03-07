@@ -1,7 +1,20 @@
+RESET			= "\033[0m"
+BLACK    		= "\033[30m"    # Black
+RED      		= "\033[31m"    # Red
+GREEN    		= "\033[32m"    # Green
+YELLOW   		= "\033[33m"    # Yellow
+BLUE     		= "\033[34m"    # Blue
+MAGENTA  		= "\033[35m"    # Magenta
+CYAN     		= "\033[36m"    # Cyan
+WHITE    		= "\033[37m"    # White
+
 NAME			= fractol
-OS				= $(shell uname)
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address -fsanitize=undefined
+OS				= $(shell uname)
+MAKE			= make -sC
+MKDIR			= mkdir -p
+RM				= rm -rf
 
 LIBFT_DIR		= libft
 LINKER  	    = -lft -L $(LIBFT_DIR)
@@ -18,9 +31,6 @@ SRCS			= $(wildcard $(SRCS_DIR)/*.c)
 OBJS_DIR		= objs
 OBJS			= $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
-MAKE			= make -sC
-MKDIR			= mkdir -p
-RM				= rm -rf
 
 ifeq ($(OS), Linux)
 	MLX_DIR			= mlx_linux
@@ -32,24 +42,13 @@ else
 	INCLUDES_FLAG	+= -I$(MLX_DIR)
 endif
 
-RESET			= "\033[0m"
-BLACK    		= "\033[30m"    # Black
-RED      		= "\033[31m"    # Red
-GREEN    		= "\033[32m"    # Green
-YELLOW   		= "\033[33m"    # Yellow
-BLUE     		= "\033[34m"    # Blue
-MAGENTA  		= "\033[35m"    # Magenta
-CYAN     		= "\033[36m"    # Cyan
-WHITE    		= "\033[37m"    # White
 
-#.DEFAULT_GOAL=test
+all : $(OBJS_DIR) $(NAME)
+	
+$(OBJS_DIR) :
+	@$(MKDIR) $(OBJS_DIR)
 
-#test : 
-#	@echo $(INCLUDES_FLAG)
-
-all : libs $(NAME)
-
-libs : 
+$(NAME) : $(OBJS)
 	@echo $(CYAN) " - Making libft..." $(RESET)
 	@$(MAKE) $(LIBFT_DIR)
 	@echo $(YELLOW) " - Made libft!" $(RESET)
@@ -59,17 +58,12 @@ libs :
 	@echo $(CYAN) " - Making mlx..." $(RESET)
 	@$(MAKE) $(MLX_DIR)
 	@echo $(YELLOW) " - Made mlx!" $(RESET)
-
-$(NAME) : $(OBJS)
 	@echo $(GREEN) " - Compiling $(NAME)..." $(RESET)
 	@$(CC) $(CFLAGS) $(OBJS) $(LINKER) -o $(NAME)
 	@echo $(YELLOW) " - Compiling FINISHED" $(RESET)
 
-$(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c $(INCLUDES) | $(OBJS_DIR)
+$(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c $(INCLUDES)
 	@$(CC) $(CFLAGS) $(INCLUDES_FLAG) -c $< -o $@
-
-$(OBJS_DIR) :
-	@$(MKDIR) $(OBJS_DIR)
 
 clean :
 	@$(RM) $(OBJS_DIR)
@@ -84,4 +78,4 @@ fclean : clean
 
 re: fclean all
 
-.PHONY: all libs clean fclean re
+.PHONY: all clean fclean re
