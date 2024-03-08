@@ -34,7 +34,7 @@ OBJS			= $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
 ifeq ($(OS), Linux)
 	MLX_DIR			= mlx_linux
-	LINKER			+= -lmlx -lm -lXext -lX11 -L $(MLX_DIR)
+	LINKER			+= -lmlx -lm -lz -lXext -lX11 -L $(MLX_DIR)
 	INCLUDES_FLAG	+= -I$(MLX_DIR)
 else
 	MLX_DIR			= mlx_macos
