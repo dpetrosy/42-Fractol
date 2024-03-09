@@ -10,6 +10,20 @@ void	error_message(char *text, int mode)
 	exit(EXIT_FAILURE);
 }
 
+void    ft_strlower(char *str)
+{
+    int i;
+    
+    if (!str)
+        return ;
+    i = -1;
+    while (str[++i])
+    {
+        if (str[i] >= 'A' && str[i] <= 'Z')
+            str[i] -= 32;
+    }
+}
+
 void    show_help()
 {
     ft_putstr_fd("\n", 1);

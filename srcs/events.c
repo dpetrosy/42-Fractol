@@ -17,34 +17,26 @@ int	on_destroy_event(t_engine *engine)
 	exit(EXIT_SUCCESS);
 }
 
-void change_fractal(int key, t_engine *engine)
-{
-	mlx_clear_window(engine->mlx, engine->window);
-	reset_engine(engine, MANDELBROT_NUM);
-	if (key == KEY_TWO)
-		engine->fractal.type = JULIA_NUM;
-}
-
 int on_mouse_hook_event(int key, int x, int y, t_engine *engine)
 {
-	t_fractal *fractal;
+	t_fractal *fr;
 
-	fractal = &engine->fractal;
+	fr = &engine->fractal;
 	if (key == MOUSE_SCRL_DOWN)
 	{
-		fractal->offset_x = (x / fractal->zoom + fractal->offset_x) - (x / (fractal->zoom * 1.3));
-		fractal->offset_y = (y / fractal->zoom + fractal->offset_y) - (y / (fractal->zoom * 1.3));
-		fractal->zoom *= 1.3;
-		if (fractal->max_iterations < 256)
-			++fractal->max_iterations;
+		fr->offset_x = (x / fr->zoom + fr->offset_x) - (x / (fr->zoom * 1.3));
+		fr->offset_y = (y / fr->zoom + fr->offset_y) - (y / (fr->zoom * 1.3));
+		fr->zoom *= 1.3;
+		if (fr->max_iterations < 256)
+			++fr->max_iterations;
 	}
 	else if (key == MOUSE_SCRL_UP)
 	{
-		fractal->offset_x = (x / fractal->zoom + fractal->offset_x) - (x / (fractal->zoom / 1.3));
-		fractal->offset_y = (y / fractal->zoom + fractal->offset_y) - (y / (fractal->zoom / 1.3));
-		fractal->zoom /= 1.3;
-		if (fractal->max_iterations > -256)
-			--fractal->max_iterations;
+		fr->offset_x = (x / fr->zoom + fr->offset_x) - (x / (fr->zoom / 1.3));
+		fr->offset_y = (y / fr->zoom + fr->offset_y) - (y / (fr->zoom / 1.3));
+		fr->zoom /= 1.3;
+		if (fr->max_iterations > 50)
+			--fr->max_iterations;
 	}
 	return (0);
 }
@@ -58,11 +50,19 @@ int on_key_hook_event(int key, t_engine *engine)
 	else if (key >= KEY_ONE && key <= KEY_FIVE)
 		change_fractal(key, engine);
 	else if (key == KEY_L && engine->fractal.type == JULIA_NUM)
-		;
-	//	lock_julia();
+		engine->fractal.is_julia_lock ^= 1;
 	else if (key == KEY_ZERO)
 		reset_engine(engine, engine->fractal.type);
 	else if (key == KEY_ESC)
 		on_destroy_event(engine);
     return (0);
+}
+
+int on_mousemove_event(int x, int y, t_engine *engine)
+{
+	if (!(engine->fractal.type == JULIA_NUM) || engine->fractal.is_julia_lock)
+		return (0);
+	engine->fractal.mouse_x = x;
+    engine->fractal.mouse_y = y;
+	return (0);
 }

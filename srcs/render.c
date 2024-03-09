@@ -1,19 +1,5 @@
 #include "render.h"
 
-void    set_pixel_color(t_engine *engine, int x, int y, int color)
-{
-    int line_len;
-    int pixel_bits;
-	int offset;
-
-    if (x < 0 || x >= WIN_SIZE || y < 0 || y >= WIN_SIZE)
-		return ;
-    line_len = engine->image.line_len;
-    pixel_bits = engine->image.pixel_bits;
-    offset = (y * line_len) + ((pixel_bits / 8) * x);
-    *(unsigned int *)(engine->image.addr_ptr + offset) = color;
-}
-
 void	change_color(int key, t_engine *engine)
 {
 	if (key == KEY_Q)
@@ -47,18 +33,33 @@ void	change_view(int key, t_engine *engine)
 
     fractal = &engine->fractal;
 	if (key == KEY_LEFT)
-		fractal->offset_x -= 60 / fractal->zoom;
+		fractal->offset_x -= VIEW_CHANGE_SIZE / fractal->zoom;
 	else if (key == KEY_RIGHT)
-		fractal->offset_x += 60 / fractal->zoom;
+		fractal->offset_x += VIEW_CHANGE_SIZE / fractal->zoom;
 	else if (key == KEY_UP)
-		fractal->offset_y -= 60 / fractal->zoom;
+		fractal->offset_y -= VIEW_CHANGE_SIZE / fractal->zoom;
 	else if (key == KEY_DOWN)
-		fractal->offset_y += 60 / fractal->zoom;
+		fractal->offset_y += VIEW_CHANGE_SIZE / fractal->zoom;
+}
+
+void    set_pixel_color(t_engine *engine, int x, int y, int color)
+{
+    int line_len;
+    int pixel_bits;
+	int offset;
+
+    if (x < 0 || x >= WIN_SIZE || y < 0 || y >= WIN_SIZE)
+		return ;
+    line_len = engine->image.line_len;
+    pixel_bits = engine->image.pixel_bits;
+    offset = (y * line_len) + ((pixel_bits / 8) * x);
+    *(unsigned int *)(engine->image.addr_ptr + offset) = color;
 }
 
 void    draw_fractal(t_engine *engine)
 {
     t_pixel pixel;
+	int		i;
 
     pixel.x = -1;
     mlx_clear_window(engine->mlx, engine->window);
@@ -66,7 +67,17 @@ void    draw_fractal(t_engine *engine)
     {
         pixel.y = -1;
         while (++pixel.y < WIN_SIZE)
-            calculate_mandelbrot(engine, &engine->fractal, &pixel);
+		{
+			if (engine->fractal.type == MANDELBROT_NUM)
+				i = calc_mandelbrot(engine, &pixel);
+			 else if (engine->fractal.type == JULIA_NUM)
+			 	i = calc_julia(engine, &pixel);
+			else if (engine->fractal.type == BURNING_SHIP_NUM)
+				i = calc_burning_ship(engine, &pixel);
+				
+			i = i % 255;
+        	set_pixel_color(engine, pixel.x, pixel.y, (i * engine->fractal.color));
+		}
     }
     mlx_put_image_to_window(engine->mlx, engine->window, 
                         engine->image.img_ptr, 0, 0);

@@ -2,18 +2,14 @@
 #include "utils.h"
 #include "mlx.h"
 
-void    ft_strlower(char *str)
+void change_fractal(int key, t_engine *engine)
 {
-    int i;
-    
-    if (!str)
-        return ;
-    i = -1;
-    while (str[++i])
-    {
-        if (str[i] >= 'A' && str[i] <= 'Z')
-            str[i] -= 32;
-    }
+	mlx_clear_window(engine->mlx, engine->window);
+	reset_engine(engine, MANDELBROT_NUM);
+	if (key == KEY_TWO)
+		engine->fractal.type = JULIA_NUM;
+	if (key == KEY_THREE)
+		engine->fractal.type = BURNING_SHIP_NUM;
 }
 
 void set_fractal_type(t_engine *engine, char *str)
@@ -28,6 +24,8 @@ void set_fractal_type(t_engine *engine, char *str)
         engine->fractal.type = MANDELBROT_NUM;
     else if (ft_strncmp(str, JULIA, len) == 0)
         engine->fractal.type = JULIA_NUM;
+    else if (ft_strncmp(str, BURNING_SHIP, len) == 0)
+        engine->fractal.type = BURNING_SHIP_NUM;
     else
         show_help();
 }
@@ -36,8 +34,11 @@ void    reset_engine(t_engine *engine, int fractal_type)
 {
     engine->fractal.type = fractal_type;
     engine->fractal.zoom = WIN_SIZE / 4;
+    engine->fractal.mouse_x = 0;
+    engine->fractal.mouse_y = 0;
     engine->fractal.offset_x = -2;
     engine->fractal.offset_y = -2;
+    engine->fractal.is_julia_lock = false;
     engine->fractal.color = 0x040000;
     engine->fractal.max_iterations = 50;
 }

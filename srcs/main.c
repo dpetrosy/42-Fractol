@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	mlx_key_hook(engine.window, on_key_hook_event, &engine);
 	mlx_mouse_hook(engine.window, on_mouse_hook_event, &engine);
 	mlx_loop_hook(engine.mlx, on_render_frame_event, &engine);
+	mlx_hook(engine.window, 6, 1L << 6, on_mousemove_event, &engine);
 	mlx_hook(engine.window, 17, 0, on_destroy_event, &engine);
 	mlx_loop(engine.mlx);
 	return (0);

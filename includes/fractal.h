@@ -13,6 +13,7 @@
 #ifndef FRACTAL_H
 # define FRACTAL_H
 
+# include <stdbool.h>
 # include "libft.h"
 # include "keys.h"
 # include "mlx.h"
@@ -21,8 +22,11 @@
 # define MANDELBROT_NUM 1
 # define JULIA "julia"
 # define JULIA_NUM 2
+# define BURNING_SHIP "burning_ship"
+# define BURNING_SHIP_NUM 3
 
 # define WIN_SIZE 540
+# define VIEW_CHANGE_SIZE 60
 
 typedef struct s_pixel
 {
@@ -51,7 +55,10 @@ typedef struct s_fractal
     double zoom;
     double offset_x;
     double offset_y;
+    double mouse_x;
+    double mouse_y;
     u_int32_t color;
+    bool is_julia_lock;
     int max_iterations;
 }   t_fractal;
 
@@ -63,6 +70,8 @@ typedef struct s_engine
     t_fractal   fractal;
 }   t_engine;
 
-void calculate_mandelbrot(t_engine *engine, t_fractal *fract, t_pixel *pixel);
+int calc_mandelbrot(t_engine *engine, t_pixel *pixel);
+int calc_julia(t_engine *engine, t_pixel *pixel);
+int calc_burning_ship(t_engine *engine, t_pixel *pixel);
 
 #endif  /* FRACTAL_H */
