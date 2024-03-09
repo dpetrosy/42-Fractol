@@ -55,7 +55,6 @@ enum e_keys
     KEY_FOUR = 21,
     KEY_FIVE = 23,
 
-
     KEY_Q = 12,
     KEY_W = 13,
     KEY_E = 14,
