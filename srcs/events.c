@@ -3,13 +3,6 @@
 #include "make_engine.h"
 #include "mlx.h"
 
-int	on_render_frame_event(t_engine *engine)
-{
-	draw_fractal(engine);
-	mlx_do_sync(engine->mlx);
-	return (0);
-}
-
 int	on_destroy_event(t_engine *engine)
 {
 	mlx_destroy_image(engine->mlx, engine->image.img_ptr);
@@ -27,17 +20,18 @@ int on_mouse_hook_event(int key, int x, int y, t_engine *engine)
 		fr->offset_x = (x / fr->zoom + fr->offset_x) - (x / (fr->zoom * 1.3));
 		fr->offset_y = (y / fr->zoom + fr->offset_y) - (y / (fr->zoom * 1.3));
 		fr->zoom *= 1.3;
-		if (fr->max_iterations < 256)
-			++fr->max_iterations;
+		if (fr->iterations < MAX_ITERATIONS)
+			++fr->iterations;
 	}
 	else if (key == MOUSE_SCRL_UP)
 	{
 		fr->offset_x = (x / fr->zoom + fr->offset_x) - (x / (fr->zoom / 1.3));
 		fr->offset_y = (y / fr->zoom + fr->offset_y) - (y / (fr->zoom / 1.3));
 		fr->zoom /= 1.3;
-		if (fr->max_iterations > 50)
-			--fr->max_iterations;
+		if (fr->iterations > MIN_ITERATIONS)
+			--fr->iterations;
 	}
+	draw_fractal(engine);
 	return (0);
 }
 
@@ -55,6 +49,7 @@ int on_key_hook_event(int key, t_engine *engine)
 		reset_engine(engine, engine->fractal.type);
 	else if (key == KEY_ESC)
 		on_destroy_event(engine);
+	draw_fractal(engine);
     return (0);
 }
 
@@ -64,5 +59,6 @@ int on_mousemove_event(int x, int y, t_engine *engine)
 		return (0);
 	engine->fractal.mouse_x = x;
     engine->fractal.mouse_y = y;
+	draw_fractal(engine);
 	return (0);
 }

@@ -25,8 +25,12 @@
 # define BURNING_SHIP "burning_ship"
 # define BURNING_SHIP_NUM 3
 
-# define WIN_SIZE 540
+# define WIN_SIZE 500
 # define VIEW_CHANGE_SIZE 60
+# define MIN_ITERATIONS 150
+# define MAX_ITERATIONS 256
+# define DEFAULT_COLOR 265
+//# define DEFAULT_COLOR 0x040000
 
 typedef struct s_pixel
 {
@@ -59,7 +63,7 @@ typedef struct s_fractal
     double mouse_y;
     u_int32_t color;
     bool is_julia_lock;
-    int max_iterations;
+    int iterations;
 }   t_fractal;
 
 typedef struct s_engine
@@ -70,8 +74,8 @@ typedef struct s_engine
     t_fractal   fractal;
 }   t_engine;
 
-int calc_mandelbrot(t_engine *engine, t_pixel *pixel);
-int calc_julia(t_engine *engine, t_pixel *pixel);
-int calc_burning_ship(t_engine *engine, t_pixel *pixel);
+int calc_mandelbrot(t_engine *engine, int x, int y);
+int calc_julia(t_engine *engine, int x, int y);
+int calc_burning_ship(t_engine *engine, int x, int y);
 
 #endif  /* FRACTAL_H */

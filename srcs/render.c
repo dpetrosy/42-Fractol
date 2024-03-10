@@ -58,27 +58,25 @@ void    set_pixel_color(t_engine *engine, int x, int y, int color)
 
 void    draw_fractal(t_engine *engine)
 {
-    t_pixel pixel;
-	int		i;
+	int	x;
+	int	y;
+	int	i;
 
-    pixel.x = -1;
-    mlx_clear_window(engine->mlx, engine->window);
-    while (++pixel.x < WIN_SIZE)
+    x = -1;
+	mlx_clear_window(engine->mlx, engine->window);
+    while (++x < WIN_SIZE)
     {
-        pixel.y = -1;
-        while (++pixel.y < WIN_SIZE)
+        y = -1;
+        while (++y < WIN_SIZE)
 		{
 			if (engine->fractal.type == MANDELBROT_NUM)
-				i = calc_mandelbrot(engine, &pixel);
-			 else if (engine->fractal.type == JULIA_NUM)
-			 	i = calc_julia(engine, &pixel);
+				i = calc_mandelbrot(engine, x, y);
+			else if (engine->fractal.type == JULIA_NUM)
+			 	i = calc_julia(engine, x, y);
 			else if (engine->fractal.type == BURNING_SHIP_NUM)
-				i = calc_burning_ship(engine, &pixel);
-				
-			i = i % 255;
-        	set_pixel_color(engine, pixel.x, pixel.y, (i * engine->fractal.color));
+				i = calc_burning_ship(engine, x, y);
+        	set_pixel_color(engine, x, y, (i * engine->fractal.color));
 		}
     }
-    mlx_put_image_to_window(engine->mlx, engine->window, 
-                        engine->image.img_ptr, 0, 0);
+    mlx_put_image_to_window(engine->mlx, engine->window, engine->image.img_ptr, 0, 0);
 }

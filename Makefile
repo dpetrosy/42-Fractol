@@ -1,3 +1,4 @@
+# Colors
 RESET			= "\033[0m"
 BLACK    		= "\033[30m"    # Black
 RED      		= "\033[31m"    # Red
@@ -8,6 +9,7 @@ MAGENTA  		= "\033[35m"    # Magenta
 CYAN     		= "\033[36m"    # Cyan
 WHITE    		= "\033[37m"    # White
 
+# Compiler
 NAME			= fractol
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address -fsanitize=undefined
@@ -16,48 +18,65 @@ MAKE			= make -sC
 MKDIR			= mkdir -p
 RM				= rm -rf
 
+# Libs
 LIBFT_DIR		= libft
+LIBFT			= $(LIBFT_DIR)/libft.a
 LINKER  	    = -lft -L $(LIBFT_DIR)
-FT_PRINTF_DIR	= ft_printf
-LINKER			+= -lftprintf -L $(FT_PRINTF_DIR)
 
+# Includes
 INCLUDES_DIR 	= includes
-INCLUDES_FLAG 	= -I$(INCLUDES_DIR) -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR)/includes
-INCLUDES		= $(wildcard $(INCLUDES_DIR)/*.h) $(LIBFT_DIR)/libft.h \
-				  			   $(FT_PRINTF_DIR)/includes/ft_printf.h
+INCLUDES_FLAG 	= -I$(INCLUDES_DIR) \
+				  -I$(LIBFT_DIR) \
 
-SRCS_DIR		= srcs
-SRCS			= $(wildcard $(SRCS_DIR)/*.c)
-OBJS_DIR		= objs
-OBJS			= $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
+INCLUDES		= $(wildcard $(INCLUDES_DIR)/*.h) \
+				  $(LIBFT_DIR)/libft.h \
 
+# Sources
+SRCS_DIR		= srcs/
+SRC_FILES		= main.c \
+				  utils.c \
+				  events.c \
+				  render.c \
+			 	  fractals.c \
+				  make_engine.c \
 
+SRCS			= $(addprefix $(SRCS_DIR), $(SRC_FILES))
+
+# Objects
+OBJS_DIR		= objs/
+OBJ_FILES		= $(SRC_FILES:.c=.o)
+OBJS			= $(addprefix $(OBJS_DIR), $(OBJ_FILES))
+
+# Platform-dependent compilation
 ifeq ($(OS), Linux)
 	MLX_DIR			= mlx_linux
+	MLX				= $(MLX_DIR)/libmlx.a
 	LINKER			+= -lmlx -lm -lz -lXext -lX11 -L $(MLX_DIR)
 	INCLUDES_FLAG	+= -I$(MLX_DIR)
 else
 	MLX_DIR			= mlx_macos
+	MLX				= $(MLX_DIR)/libmlx.a
 	LINKER			+= -lmlx -lm -framework OpenGl -framework Appkit -L $(MLX_DIR)
 	INCLUDES_FLAG	+= -I$(MLX_DIR)
 endif
 
 
-all : $(OBJS_DIR) $(NAME)
-	
+all : $(LIBFT) $(MLX) $(OBJS_DIR) $(NAME)
+
+$(LIBFT) :
+	@echo $(CYAN) " - Making libft..." $(RESET)
+	@$(MAKE) $(LIBFT_DIR)
+	@echo $(YELLOW) " - Made libft!" $(RESET)
+
+$(MLX) :
+	@echo $(CYAN) " - Making mlx..." $(RESET)
+	@$(MAKE) $(MLX_DIR)
+	@echo $(YELLOW) " - Made mlx!" $(RESET)
+
 $(OBJS_DIR) :
 	@$(MKDIR) $(OBJS_DIR)
 
 $(NAME) : $(OBJS)
-	@echo $(CYAN) " - Making libft..." $(RESET)
-	@$(MAKE) $(LIBFT_DIR)
-	@echo $(YELLOW) " - Made libft!" $(RESET)
-	@echo $(CYAN) " - Making printf..." $(RESET)
-	@$(MAKE) $(FT_PRINTF_DIR)
-	@echo $(YELLOW) " - Made printf!" $(RESET)
-	@echo $(CYAN) " - Making mlx..." $(RESET)
-	@$(MAKE) $(MLX_DIR)
-	@echo $(YELLOW) " - Made mlx!" $(RESET)
 	@echo $(GREEN) " - Compiling $(NAME)..." $(RESET)
 	@$(CC) $(CFLAGS) $(OBJS) $(LINKER) -o $(NAME)
 	@echo $(YELLOW) " - Compiling FINISHED" $(RESET)
@@ -73,8 +92,6 @@ fclean : clean
 	@$(RM) $(NAME)
 	@$(MAKE) $(MLX_DIR) clean
 	@$(MAKE) $(LIBFT_DIR) fclean
-	@$(MAKE) $(FT_PRINTF_DIR) fclean
-	@echo $(RED) " - Full Cleaned!" $(RESET)
 
 re: fclean all
 

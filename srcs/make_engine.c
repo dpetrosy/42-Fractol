@@ -4,7 +4,6 @@
 
 void change_fractal(int key, t_engine *engine)
 {
-	mlx_clear_window(engine->mlx, engine->window);
 	reset_engine(engine, MANDELBROT_NUM);
 	if (key == KEY_TWO)
 		engine->fractal.type = JULIA_NUM;
@@ -39,8 +38,8 @@ void    reset_engine(t_engine *engine, int fractal_type)
     engine->fractal.offset_x = -2;
     engine->fractal.offset_y = -2;
     engine->fractal.is_julia_lock = false;
-    engine->fractal.color = 0x040000;
-    engine->fractal.max_iterations = 50;
+    engine->fractal.color = DEFAULT_COLOR;
+    engine->fractal.iterations = MIN_ITERATIONS;
 }
 
 void    init_engine(t_engine *engine, char *arg)
