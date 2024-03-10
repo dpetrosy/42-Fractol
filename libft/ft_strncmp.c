@@ -6,7 +6,7 @@
 /*   By: dapetros <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:43:50 by dapetros          #+#    #+#             */
-/*   Updated: 2024/01/25 15:06:45 by dapetros         ###   ########.fr       */
+/*   Updated: 2024/03/10 20:50:39 by dapetros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		}
 		++i;
 	}
-	return (0);
+	return ((unsigned char)s1[i] < (unsigned char)s2[i]);
 }

@@ -81,7 +81,7 @@ $(NAME) : $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LINKER) -o $(NAME)
 	@echo $(YELLOW) " - Compiling FINISHED" $(RESET)
 
-$(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c $(INCLUDES)
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.c $(INCLUDES)
 	@$(CC) $(CFLAGS) $(INCLUDES_FLAG) -c $< -o $@
 
 clean :
