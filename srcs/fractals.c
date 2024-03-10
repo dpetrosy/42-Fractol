@@ -27,17 +27,21 @@ int calc_mandelbrot(t_engine *engine, int x, int y)
 int calc_julia(t_engine *engine, int x, int y)
 {
     double      re_temp;
-    t_fractal   *fract;
+    t_fractal           *fract;
+    static t_complex    c;
     t_complex   z;
-    t_complex   c;
+    
     int         i;
 
     i = -1;
     fract = &engine->fractal;
     z.re = (x / fract->zoom) + fract->offset_x;
     z.im = (y / fract->zoom) + fract->offset_y;
-    c.re = (fract->mouse_x / fract->zoom) + fract->offset_x;
-    c.im = (fract->mouse_y / fract->zoom) + fract->offset_y;
+    if (!fract->is_julia_lock)
+    {
+        c.re = (fract->mouse_x / fract->zoom) + fract->offset_x;
+        c.im = (fract->mouse_y / fract->zoom) + fract->offset_y;
+    }
     while ((z.re * z.re + z.im * z.im) < 4 && ++i < fract->iterations)
     {
         re_temp = z.re * z.re - z.im * z.im + c.re;
