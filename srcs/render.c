@@ -69,12 +69,14 @@ void    draw_fractal(t_engine *engine)
         y = -1;
         while (++y < WIN_SIZE)
 		{
-			if (engine->fractal.type == MANDELBROT_NUM)
+			if (engine->fractal.type == MANDELBROT)
 				i = calc_mandelbrot(engine, x, y);
-			else if (engine->fractal.type == JULIA_NUM)
+			else if (engine->fractal.type == JULIA)
 			 	i = calc_julia(engine, x, y);
-			else if (engine->fractal.type == BURNING_SHIP_NUM)
+			else if (engine->fractal.type == BURNING_SHIP)
 				i = calc_burning_ship(engine, x, y);
+			else if (engine->fractal.type == TRICORN)
+				i = calc_tricorn(engine, x, y);
         	set_pixel_color(engine, x, y, (i * engine->fractal.color));
 		}
     }

@@ -43,7 +43,7 @@ int on_key_hook_event(int key, t_engine *engine)
 		change_view(key, engine);
 	else if (key >= KEY_ONE && key <= KEY_FIVE)
 		change_fractal(key, engine);
-	else if (key == KEY_L && engine->fractal.type == JULIA_NUM)
+	else if (key == KEY_L && engine->fractal.type == JULIA)
 		engine->fractal.is_julia_lock ^= 1;
 	else if (key == KEY_ZERO)
 		reset_engine(engine, engine->fractal.type);
@@ -55,7 +55,7 @@ int on_key_hook_event(int key, t_engine *engine)
 
 int on_mousemove_event(int x, int y, t_engine *engine)
 {
-	if (!(engine->fractal.type == JULIA_NUM) || engine->fractal.is_julia_lock)
+	if (!(engine->fractal.type == JULIA) || engine->fractal.is_julia_lock)
 		return (0);
 	engine->fractal.mouse_x = x;
     engine->fractal.mouse_y = y;

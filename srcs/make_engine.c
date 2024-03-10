@@ -4,11 +4,13 @@
 
 void change_fractal(int key, t_engine *engine)
 {
-	reset_engine(engine, MANDELBROT_NUM);
+	reset_engine(engine, MANDELBROT);
 	if (key == KEY_TWO)
-		engine->fractal.type = JULIA_NUM;
-	if (key == KEY_THREE)
-		engine->fractal.type = BURNING_SHIP_NUM;
+		engine->fractal.type = JULIA;
+	else if (key == KEY_THREE)
+		engine->fractal.type = BURNING_SHIP;
+    else if (key == KEY_FOUR)
+		engine->fractal.type = TRICORN;
 }
 
 void set_fractal_type(t_engine *engine, char *str)
@@ -19,12 +21,14 @@ void set_fractal_type(t_engine *engine, char *str)
         return ;
     ft_strlower(str);
     len = ft_strlen(str);
-    if (ft_strncmp(str, MANDELBROT, len) == 0)
-        engine->fractal.type = MANDELBROT_NUM;
-    else if (ft_strncmp(str, JULIA, len) == 0)
-        engine->fractal.type = JULIA_NUM;
-    else if (ft_strncmp(str, BURNING_SHIP, len) == 0)
-        engine->fractal.type = BURNING_SHIP_NUM;
+    if (ft_strncmp(str, MANDELBROT_STR, len) == 0)
+        engine->fractal.type = MANDELBROT;
+    else if (ft_strncmp(str, JULIA_STR, len) == 0)
+        engine->fractal.type = JULIA;
+    else if (ft_strncmp(str, BURNING_SHIP_STR, len) == 0)
+        engine->fractal.type = BURNING_SHIP;
+    else if (ft_strncmp(str, TRICORN_STR, len) == 0)
+        engine->fractal.type = TRICORN;
     else
         show_help();
 }
@@ -50,7 +54,7 @@ void    init_engine(t_engine *engine, char *arg)
 
     if (!engine || !arg)
         return ;
-    reset_engine(engine, MANDELBROT_NUM);
+    reset_engine(engine, MANDELBROT);
     set_fractal_type(engine, arg);
     engine->mlx = mlx_init();
     if (!engine->mlx)

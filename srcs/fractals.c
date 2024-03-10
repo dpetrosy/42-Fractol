@@ -73,3 +73,26 @@ int calc_burning_ship(t_engine *engine, int x, int y)
     }
     return (i);
 }
+
+int calc_tricorn(t_engine *engine, int x, int y)
+{
+    double      re_temp;
+    t_fractal   *fract;
+    t_complex   z;
+    t_complex   c;
+    int         i;
+
+    i = -1;
+    z.re = 0;
+    z.im = 0;
+    fract = &engine->fractal;
+    c.re = (x / fract->zoom) + fract->offset_x;
+    c.im = (y / fract->zoom) + fract->offset_y;
+    while ((z.re * z.re + z.im * z.im) < 4 && ++i < fract->iterations)
+    {
+        re_temp = z.re * z.re - z.im * z.im + c.re;
+        z.im = -2 * z.re * z.im + c.im;
+        z.re = re_temp;
+    }
+    return (i);
+}

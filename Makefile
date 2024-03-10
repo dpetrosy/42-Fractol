@@ -92,6 +92,7 @@ fclean : clean
 	@$(RM) $(NAME)
 	@$(MAKE) $(MLX_DIR) clean
 	@$(MAKE) $(LIBFT_DIR) fclean
+	@echo $(RED) " - Full Cleaned!" $(RESET)
 
 re: fclean all
 

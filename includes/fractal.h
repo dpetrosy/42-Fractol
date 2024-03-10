@@ -18,12 +18,14 @@
 # include "keys.h"
 # include "mlx.h"
 
-# define MANDELBROT "mandelbrot"
-# define MANDELBROT_NUM 1
-# define JULIA "julia"
-# define JULIA_NUM 2
-# define BURNING_SHIP "burning_ship"
-# define BURNING_SHIP_NUM 3
+# define MANDELBROT 1
+# define JULIA 2
+# define BURNING_SHIP 3
+# define TRICORN 4
+# define MANDELBROT_STR "mandelbrot"
+# define JULIA_STR "julia"
+# define BURNING_SHIP_STR "burning_ship"
+# define TRICORN_STR "tricorn"
 
 # define WIN_SIZE 500
 # define VIEW_CHANGE_SIZE 60
@@ -77,5 +79,6 @@ typedef struct s_engine
 int calc_mandelbrot(t_engine *engine, int x, int y);
 int calc_julia(t_engine *engine, int x, int y);
 int calc_burning_ship(t_engine *engine, int x, int y);
+int calc_tricorn(t_engine *engine, int x, int y);
 
 #endif  /* FRACTAL_H */
