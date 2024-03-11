@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dapetros <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 23:30:49 by dapetros          #+#    #+#             */
-/*   Updated: 2024/03/08 00:55:39 by dapetros         ###   ########.fr       */
+/*   Created: 2024/03/11 22:18:28 by dapetros          #+#    #+#             */
+/*   Updated: 2024/03/11 22:18:49 by dapetros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_engine engine;
+	t_engine	engine;
 
 	if (argc != 2)
 		show_help();

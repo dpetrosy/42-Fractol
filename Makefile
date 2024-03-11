@@ -12,7 +12,7 @@ WHITE    		= "\033[37m"    # White
 # Compiler
 NAME			= fractol
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address -fsanitize=undefined
+CFLAGS			= -Wall -Wextra -Werror
 OS				= $(shell uname)
 MAKE			= make -sC
 MKDIR			= mkdir -p
@@ -38,6 +38,7 @@ SRC_FILES		= main.c \
 				  events.c \
 				  render.c \
 			 	  fractals.c \
+				  mandelbox.c \
 				  make_engine.c \
 
 SRCS			= $(addprefix $(SRCS_DIR), $(SRC_FILES))
@@ -76,7 +77,7 @@ $(MLX) :
 $(OBJS_DIR) :
 	@$(MKDIR) $(OBJS_DIR)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) Makefile
 	@echo $(GREEN) " - Compiling $(NAME)..." $(RESET)
 	@$(CC) $(CFLAGS) $(OBJS) $(LINKER) -o $(NAME)
 	@echo $(YELLOW) " - Compiling FINISHED" $(RESET)
