@@ -100,7 +100,7 @@ $ cd path/to/fractol && make
 
 **2. How to run the program**
 
-Run the executable too see help message:
+Run the executable too see the help message:
 ```shell
 ./fractol
 ```
