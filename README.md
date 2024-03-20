@@ -57,7 +57,7 @@ For detailed information, refer to the [**subject of this project**](README_file
 
 ## 📑 Fractals List
 
-Program supports this fractal sets:
+The program supports these fractal sets:
 
 | Name              | Formula                                                                                            |
 |:-----------------:|:--------------------------------------------------------------------------------------------------:|
