@@ -131,22 +131,22 @@ Or run with some supported fractal:
 # 🌄 Screenshots
 
 ## Mandelbrot set
-![Fract-ol mono-colored Mandelbrot by dpetrosy](README_files/screenshots/mandelbrot1.png)
-![Fract-ol red blue and green striped Mandelbrot by dpetrosy](README_files/screenshots/mandelbrot2.png)
-![Fract-ol sun crest purple Mandelbrot by dpetrosy](README_files/screenshots/mandelbrot3.png)
+![Fractal mono-colored Mandelbrot](README_files/screenshots/mandelbrot1.png)
+![Fractal red blue and green striped Mandelbrot](README_files/screenshots/mandelbrot2.png)
+![Fractal sun crest purple Mandelbrot](README_files/screenshots/mandelbrot3.png)
 
 ## Julia set
-![Fract-ol purple green and yellow Julia by dpetrosy](README_files/screenshots/julia1.png)
-![Fract-ol red swirl Julia by dpetrosy](README_files/screenshots/julia1.png)
-![Fract-ol blue snowflake Julia by dpetrosy](README_files/screenshots/julia1.png)
+![Fractal purple green and yellow Julia](README_files/screenshots/julia1.png)
+![Fractal red swirl Julia](README_files/screenshots/julia2.png)
+![Fractal blue snowflake Julia](README_files/screenshots/julia3.png)
 
 ## Burning Ship set
-![Fract-ol golden burning ship by dpetrosy](README_files/screenshots/burning_ship.png)
+![Fract-ol golden Burning Ship](README_files/screenshots/burning_ship.png)
 
 ## Teicorn set
 
 
 ## Mandelbox set
-![Fract-ol brown tribal Mandelbox by dpetrosy](README_files/screenshots/mandelbox.png)
+![Fract-ol brown tribal Mandelbox](README_files/screenshots/mandelbox.png)
 
 ## Celtic Mandelbar set
