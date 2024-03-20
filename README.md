@@ -44,8 +44,8 @@
 
 For detailed information, refer to the [**subject of this project**](README_files/fractol_subject.pdf).
 
-	🚀 TLDR: The fract-ol project is one of the three "beginner" graphical projects of the cursus.
- 		 It teaches you about manipulating a low-level graphic library, advanced math, and more.
+	🚀 TLDR: The fract-ol project is one of the three "beginner" graphical projects of the 
+ 		 cursus. It teaches you about using graphic library, advanced math, and more.
 
 ## 🔷 Mandatory Part
 
