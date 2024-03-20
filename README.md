@@ -125,7 +125,7 @@ Or run with some supported fractal:
 ## Burning Ship set
 ![Fract-ol golden Burning Ship](README_files/screenshots/burning_ship.png)
 
-## Teicorn set
+## Tricorn set
 ![Fract-ol purple Tricorn](README_files/screenshots/tricorn.png)
 
 ## Mandelbox set
