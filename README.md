@@ -68,24 +68,6 @@ Program supports this fractal sets:
 | Mandelbox         | It's more complex, see [this article](https://sites.google.com/site/mandelbox/what-is-a-mandelbox) |
 | Celtic Mandelbar  | $z_{n+1} = \frac{}{z_n}^2 + c, z_0 = c$                                                            |
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 🎮 Controls
 
 The program supports the following controls:
@@ -144,9 +126,7 @@ Or run with some supported fractal:
 ![Fract-ol golden Burning Ship](README_files/screenshots/burning_ship.png)
 
 ## Teicorn set
-
+![Fract-ol purple Tricorn](README_files/screenshots/tricorn.png)
 
 ## Mandelbox set
 ![Fract-ol brown tribal Mandelbox](README_files/screenshots/mandelbox.png)
-
-## Celtic Mandelbar set
