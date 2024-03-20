@@ -39,14 +39,13 @@
 ## 📜 About Project
 
 > One of the first graphical projects at 42 school, fract-ol generates beautiful fractals from the complex numbers of \
-> an iterative mathematical construct. A fractal is a fragmented geometrical figure that infinitely repeats itself at smaller \
-> scales. This project uses the school's graphical library, MiniLibX.
+> an iterative mathematical construct. A fractal is a fragmented geometrical figure that infinitely repeats itself at \
+> smaller scales. This project uses the school's graphical library, MiniLibX.
 
 For detailed information, refer to the [**subject of this project**](README_files/fractol_subject.pdf).
 
-	🚀 TLDR: The fract-ol project from the 42 School is one of the three "beginner" graphical 
- 		 projects of the cursus. It teaches you about manipulating a low-level graphic library,
-   		 advanced math, and more.
+	🚀 TLDR: The fract-ol project is one of the three "beginner" graphical projects of the cursus.
+ 		 It teaches you about manipulating a low-level graphic library, advanced math, and more.
 
 ## 🔷 Mandatory Part
 
