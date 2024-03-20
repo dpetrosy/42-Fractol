@@ -26,11 +26,13 @@
   <h3>
       <a href="#-about-project">📜 About Project</a>
     <span> · </span>
-      <a href="#-mandatory-part">🔷 Mandatory Part</a>
+      <a href="#-fractals-list">📑 Fractals List</a>
     <span> · </span>
-	  <a href="#-bonus-part">🌟 Bonus Part</a>
+	  <a href="#-controls">🎮 Controls</a>
     <span> · </span>
       <a href="#-usage">👨‍💻 Usage</a>
+    <span> · </span>
+      <a href="#-screenshots">🌄 Screenshots</a>
   </h3>
 </div>
 
@@ -47,31 +49,57 @@ For detailed information, refer to the [**subject of this project**](README_file
 	🚀 TLDR: The fract-ol project is one of the three "beginner" graphical projects of the 
  		 cursus. It teaches you about using graphic library, advanced math, and more.
 
-## 🔷 Mandatory Part
-
-The program `pipex` should repeat the behavior of the next shell command:
-```bash
-$> < file1 cmd1 | cmd2 > file2
-```
-and looks like this:
-```bash
-$> ./pipex file1 cmd1 cmd2 file2
-```
-
 > [!NOTE]  
-> All errors like: wrong commands,  permission to files and etc are handled.
+> Because of 42 School norm requirements:
+> * Each function can't have more then 25 lines of code.
+> * All variables are declared and aligned at the top of each function.
+> * Project should be created just with allowed functions otherwise it's cheating.
 
-## 🌟 Bonus Part
+## 📑 Fractals List
 
-Program needs to handle multiple pipes:
-```bash
-$> < file1 cmd1 | cmd2 | cmd3 | ... | cmdn > file2
-```
+Program supports this fractal sets:
 
-and looks like this:
-```bash
-$> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
-```
+| Name              | Formula                                                                                            |
+|:-----------------:|:--------------------------------------------------------------------------------------------------:|
+| Mandelbrot        | $z_{n+1} = z_n^2 + c, z_0 = 0$                                                                     |
+| Julia             | $z_{n+1} = z_n^2 + c, z_0 = c$                                                                     |
+| Burning Ship      | $z_{n+1} = abs(z_n^2) + c, z_0 = 0$                                                                |
+| Tricorn           | $z_{n+1} = \frac{}{z_n}^2 + c, z_0 = 0$                                                            |
+| Mandelbox         | It's more complex, see [this article](https://sites.google.com/site/mandelbox/what-is-a-mandelbox) |
+| Celtic Mandelbar  | $z_{n+1} = \frac{}{z_n}^2 + c, z_0 = c$                                                            |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 🎮 Controls
+
+The program supports the following controls:
+
+| Key           | Description                             |
+|:-------------:|:---------------------------------------:|
+| ESC           | Close the program window                |
+| Keys [1-6]    | Move to another fractal                 |
+| Keys [Q-Y]    | Change the color of fractal             |
+| Keys [A-H]    | Change the color of fractal             |
+| Mouse Scroll  | Zoom in and out of the fractal          |
+| ⬆️ ⬇️ ⬅️ ➡️     | Change the viewpoint                    |
+| Key L         | Lock Julia's fractal                    |
+| Zero          | Reset the fractal to its initial state  |
 
 ## 👨‍💻 Usage
 ### Requirements
@@ -85,17 +113,40 @@ The program is written in C language and thus needs the **gcc compiler** and som
 To compile the program, run:
 
 ```shell
-$ cd path/to/pipex && make
+$ cd path/to/fractol && make
 ```
 
 **2. How to run the program**
 
-Run the executable with commands of your choice:
+Run the executable too see help message:
 ```shell
-./pipex input "cat" "wc -l" output
+./fractol
 ```
 
-Use `clean` to delete all object files, `fclean` to remove executable and all object files, and `re` to recompile the program:
+Or run with some supported fractal:
 ```shell
-make clean / make fclean / make re
+./fractol mandelbrot
 ```
+
+# 🌄 Screenshots
+
+## Mandelbrot set
+![Fract-ol mono-colored Mandelbrot by dpetrosy](README_files/screenshots/mandelbrot1.png)
+![Fract-ol red blue and green striped Mandelbrot by dpetrosy](README_files/screenshots/mandelbrot2.png)
+![Fract-ol sun crest purple Mandelbrot by dpetrosy](README_files/screenshots/mandelbrot3.png)
+
+## Julia set
+![Fract-ol purple green and yellow Julia by dpetrosy](README_files/screenshots/julia1.png)
+![Fract-ol red swirl Julia by dpetrosy](README_files/screenshots/julia1.png)
+![Fract-ol blue snowflake Julia by dpetrosy](README_files/screenshots/julia1.png)
+
+## Burning Ship set
+![Fract-ol golden burning ship by dpetrosy](README_files/screenshots/burning_ship.png)
+
+## Teicorn set
+
+
+## Mandelbox set
+![Fract-ol brown tribal Mandelbox by dpetrosy](README_files/screenshots/mandelbox.png)
+
+## Celtic Mandelbar set
