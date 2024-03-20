@@ -51,7 +51,7 @@ For detailed information, refer to the [**subject of this project**](README_file
 
 > [!NOTE]  
 > Because of 42 School norm requirements:
-> * Each function can't have more then 25 lines of code.
+> * Each function can't have more than 25 lines of code.
 > * All variables are declared and aligned at the top of each function.
 > * Project should be created just with allowed functions otherwise it's cheating.
 
